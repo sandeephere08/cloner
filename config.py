@@ -16,13 +16,13 @@ BOT_TOKEN = getenv("BOT_TOKEN", "0")
 # -------------------------------------------------------
 OWNER_USERNAME = getenv("OWNER_USERNAME","@ZeoXD")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "SiriProBot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "ShizukaProBot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Siri")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "ProSiri")
+ASSUSERNAME = getenv("ASSUSERNAME" , "ShizukaPro")
 
-API_KEY = "abc921ff654bcf7b3faff8f775d781d27d32bfd02d6692eea30249ba781c8b"  # अपना API key यहाँ डालें
+API_KEY = "A"  # अपना API key यहाँ डालें
 # ---------------------------------------------------------
 
 
@@ -71,7 +71,7 @@ GIT_TOKEN = getenv(
 # -------------------------------------------------------------------------
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/ProBotts")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/ProBotGc")
-SOURCE = getenv("SOURCE", "https://github.com/BABY-MUSIC/SPOTIFY_MUSIC")
+SOURCE = getenv("SOURCE", "https://t.me/ProBotts")
 CHAT = getenv("CHAT", "https://t.me/ProBotGc")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
