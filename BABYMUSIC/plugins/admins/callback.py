@@ -28,6 +28,7 @@ from BABYMUSIC.utils.decorators.language import languageCB
 from BABYMUSIC.utils.formatters import seconds_to_min
 from BABYMUSIC.utils.inline import close_markup, stream_markup
 from BABYMUSIC.utils.stream.autoclear import auto_clean
+import config
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
