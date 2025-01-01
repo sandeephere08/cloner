@@ -9,12 +9,12 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", "0"))
-API_HASH = getenv("API_HASH", "0")
+API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN", "0")
+BOT_TOKEN = getenv("BOT_TOKEN")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","@ZeoXD")
+OWNER_USERNAME = getenv("OWNER_USERNAME","ZeoXpro")
 # --------------------------------------------------------
 BOT_USERNAME = getenv("BOT_USERNAME" , "ShizukaProBot")
 # --------------------------------------------------------
@@ -36,10 +36,10 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", "0"))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002100130095))
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", "0"))
+OWNER_ID = int(getenv("OWNER_ID", 7355202884))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
@@ -118,6 +118,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 STRING1 = getenv("STRING_SESSION", "")
+STRING2 = getenv("STRING_SESSION2", None)
 BANNED_USERS = filters.user()
 adminlist = {}
 lyrical = {}
@@ -138,15 +139,15 @@ confirmer = {}
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://files.catbox.moe/xhpqtp.jpg"
+    "START_IMG_URL", "https://files.catbox.moe/yeeu8p.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://telegra.ph/file/fd827f9a4fe8eaa3e8bf4.jpg"
+    "PING_IMG_URL", "https://files.catbox.moe/yeeu8p.jpg"
 )
-PLAYLIST_IMG_URL = "https://telegra.ph/file/d723f4c80da157fca1678.jpg"
-STATS_IMG_URL = "https://telegra.ph/file/d30d11c4365c025c25e3e.jpg"
-TELEGRAM_AUDIO_URL = "https://telegra.ph/file/c832e84cd991c865c7e4f.jpg"
-TELEGRAM_VIDEO_URL = "https://telegra.ph/file/e575ae40d6635250974e1.jpg"
+PLAYLIST_IMG_URL = "https://telegra.ph/file/08db892ae10fcd27fc420.jpg"
+STATS_IMG_URL = "https://telegra.ph/file/1827dd6c414ce09098002.jpg"
+TELEGRAM_AUDIO_URL = "https://telegra.ph/file/08db892ae10fcd27fc420.jpg"
+TELEGRAM_VIDEO_URL = "https://telegra.ph/file/08db892ae10fcd27fc420.jpg"
 STREAM_IMG_URL = "https://telegra.ph/file/03efec694e41e891b29dc.jpg"
 SOUNCLOUD_IMG_URL = "https://telegra.ph/file/d723f4c80da157fca1678.jpg"
 YOUTUBE_IMG_URL = "https://telegra.ph/file/4dc854f961cd3ce46899b.jpg"
