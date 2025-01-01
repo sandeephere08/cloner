@@ -184,16 +184,19 @@ NEXT_PAGE: ">"
 BACK_PAGE: "<"
 
 
-SO_B_1 : "Add"
-S_B_1 : "Add Me Your Group"
-S_B_2 : "Support"
-S_B_3 : "Tap to see magic 🪄"
-S_B_4 : "Help and Command"
+SO_B_1 : "ᴀᴅᴅ"
+S_B_1 : "ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ"
+S_B_2 : "sᴜᴘᴘᴏʀᴛ"
+S_B_3 : "ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ"
+S_B_4 : "ᴄᴏᴍᴍᴀɴᴅs"
 S_B_5 : "Chat"
-S_B_6 : "Update"
-S_B_7 : "Source"
-S_B_8 : "YouTube"
-S_B_9 : "Support"
+S_B_6 : "ᴜᴘᴅᴀᴛᴇ"
+S_B_7 : "sᴏᴜʀᴄᴇ"
+S_B_8 : "YᴏᴜTᴜʙᴇ"
+S_B_9 : "sᴜᴘᴘᴏʀᴛ"
+
+#Developer 
+D_B_1 : "ᴅᴇᴠ"
 
 H_B_1 : "Admin"
 H_B_2 : "Auth"
