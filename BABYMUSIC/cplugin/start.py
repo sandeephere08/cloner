@@ -23,7 +23,7 @@ from BABYMUSIC.utils.database import (
 from BABYMUSIC.utils.decorators.language import LanguageStart
 from BABYMUSIC.utils.formatters import get_readable_time
 from BABYMUSIC.utils.inline import help_pannel, private_panel, start_panel
-from config import BANNED_USERS
+from config import BANNED_USERS, OWNER_ID
 from strings import get_string
 
 #--------------------------
@@ -101,7 +101,7 @@ async def start_pm(client, message: Message, _):
             )
         ],
         [
-            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
+            InlineKeyboardButton(text=_["S_B_5"], user_id=OWNER_ID),
             InlineKeyboardButton(text=_["S_B_6"], url=config.SUPPORT_CHANNEL),
         ],
         [
