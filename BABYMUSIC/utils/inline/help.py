@@ -111,7 +111,7 @@ def first_page(_):
             # ],
             #controll_button,
             [
-        InlineKeyboardButton(text="๏ ʙᴀᴄᴋ ๏", callback_data=f"settingsback_helper")
+        InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")
     ]
         ]
     )
