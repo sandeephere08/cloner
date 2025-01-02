@@ -1,7 +1,7 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from BABYMUSIC import app
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.utils.decorators import AdminRightsCheck
 from BABYMUSIC.utils.inline import close_markup
 from config import BANNED_USERS
@@ -79,7 +79,7 @@ async def music_off(chat_id: int):
 async def pause_admin(cli, message: Message, _, chat_id):
 
     await music_off(chat_id)
-    await PRO.pause_stream(chat_id)
+    await BABY.pause_stream(chat_id)
 
     buttons = [
         [
