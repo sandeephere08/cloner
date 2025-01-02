@@ -79,18 +79,18 @@ def first_page(_):
             ],
             [
                 InlineKeyboardButton(
+                    text=_["H_B_11"], callback_data="help_callback hb5"
+                ),
+                InlineKeyboardButton(
                     text=_["H_B_13"], callback_data="help_callback hb4"
                 ),
                 InlineKeyboardButton(
-                    text=_["H_B_12"], callback_data="help_callback hb12"
-                ),
-                InlineKeyboardButton(
-                    text=_["H_B_11"], callback_data="help_callback hb5"
+                    text=_["H_B_6"], callback_data="help_callback hb6"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text=_["H_B_6"], callback_data="help_callback hb6"
+                    text=_["H_B_12"], callback_data="help_callback hb12"
                 ),
                 InlineKeyboardButton(
                     text=_["H_B_10"], callback_data="help_callback hb10"
