@@ -272,7 +272,7 @@ async def auto_clean():
             for chat_id in served_chats:
                 if chat_id not in adminlist:
                     adminlist[chat_id] = []
-                    async for user in client.get_chat_members(
+                    async for user in Client.get_chat_members( #change done 
                         chat_id, filter=ChatMembersFilter.ADMINISTRATORS
                     ):
                         if user.privileges.can_manage_video_chats:
