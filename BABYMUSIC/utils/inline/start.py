@@ -34,3 +34,21 @@ def private_panel(_):
         [InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper")],
     ]
     return buttons
+
+# Private panel for inline buttons
+def private_panel2(_):
+    a = await client.get_me()
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text=_["S_B_3"],
+                url=f"https://t.me/{a.username}?startgroup=true",
+            )
+        ],
+        [
+            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
+            InlineKeyboardButton(text=_["S_B_2"], url=config.SUPPORT_CHAT),
+        ],
+        [InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper")],
+    ]
+    return buttons
