@@ -2,7 +2,7 @@ from pyrogram import filters, Client
 from pyrogram.types import Message
 
 from BABYMUSIC import app
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import SUDOERS, db
 from BABYMUSIC.utils import AdminRightsCheck
 from BABYMUSIC.utils.database import is_active_chat, is_nonadmin_chat
@@ -86,7 +86,7 @@ async def del_back_playlist(client, callback_query, _):
         text=_["admin_32"].format(callback_query.from_user.mention),
     )
     try:
-        await PRO.speedup_stream(
+        await BABY.speedup_stream(
             chat_id,
             file_path,
             speed,

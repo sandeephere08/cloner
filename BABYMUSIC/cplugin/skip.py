@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
 from BABYMUSIC import YouTube, app
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import db
 from BABYMUSIC.utils.database import get_loop
 from BABYMUSIC.utils.decorators import AdminRightsCheck
@@ -52,7 +52,7 @@ async def skip(cli, message: Message, _, chat_id):
                                         ),
                                         reply_markup=close_markup(_),
                                     )
-                                    await PRO.stop_stream(chat_id)
+                                    await BABY.stop_stream(chat_id)
                                 except:
                                     return
                                 break
@@ -79,7 +79,7 @@ async def skip(cli, message: Message, _, chat_id):
                     reply_markup=close_markup(_),
                 )
                 try:
-                    return await PRO.stop_stream(chat_id)
+                    return await BABY.stop_stream(chat_id)
                 except:
                     return
         except:
@@ -90,7 +90,7 @@ async def skip(cli, message: Message, _, chat_id):
                     ),
                     reply_markup=close_markup(_),
                 )
-                return await PRO.stop_stream(chat_id)
+                return await BABY.stop_stream(chat_id)
             except:
                 return
     queued = check[0]["file"]
@@ -115,7 +115,7 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             image = None
         try:
-            await PRO.skip_stream(chat_id, link, video=status, image=image)
+            await BABY.skip_stream(chat_id, link, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup2(_, chat_id)
@@ -123,7 +123,7 @@ async def skip(cli, message: Message, _, chat_id):
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
-                f"https://t.me/NezukoProBot?start=info_{videoid}",
+                f"https://t.me/NezukoBABYBot?start=info_{videoid}",
                 title[:23],
                 check[0]["dur"],
                 user,
@@ -148,7 +148,7 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             image = None
         try:
-            await PRO.skip_stream(chat_id, file_path, video=status, image=image)
+            await BABY.skip_stream(chat_id, file_path, video=status, image=image)
         except:
             return await mystic.edit_text(_["call_6"])
         button = stream_markup(_, videoid, chat_id)
@@ -156,7 +156,7 @@ async def skip(cli, message: Message, _, chat_id):
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
-                f"https://t.me/NezukoProBot?start=info_{videoid}",
+                f"https://t.me/NezukoBABYBot?start=info_{videoid}",
                 title[:23],
                 check[0]["dur"],
                 user,
@@ -168,7 +168,7 @@ async def skip(cli, message: Message, _, chat_id):
         await mystic.delete()
     elif "index_" in queued:
         try:
-            await PRO.skip_stream(chat_id, videoid, video=status)
+            await BABY.skip_stream(chat_id, videoid, video=status)
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup2(_, chat_id)
@@ -190,7 +190,7 @@ async def skip(cli, message: Message, _, chat_id):
             except:
                 image = None
         try:
-            await PRO.skip_stream(chat_id, queued, video=status, image=image)
+            await BABY.skip_stream(chat_id, queued, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
         if videoid == "telegram":
@@ -229,7 +229,7 @@ async def skip(cli, message: Message, _, chat_id):
             run = await message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
-                    f"https://t.me/NezukoProBot?start=info_{videoid}",
+                    f"https://t.me/NezukoBABYBot?start=info_{videoid}",
                     title[:23],
                     check[0]["dur"],
                     user,

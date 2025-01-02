@@ -8,7 +8,7 @@ from pytgcalls.exceptions import NoActiveGroupCall
 from BABYMUSIC.utils.database import get_assistant
 import config
 from BABYMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import SUDOERS
 from BABYMUSIC.utils.inline import panel_markup_clone
 from BABYMUSIC.utils import seconds_to_min, time_to_seconds
@@ -387,7 +387,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await PRO.stream_call(url)
+                await BABY.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(_["black_9"])
                 return await client.send_message(
@@ -773,7 +773,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 import config
 from BABYMUSIC import Carbon, YouTube
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import db
 from BABYMUSIC.utils.database import add_active_video_chat, is_active_chat
 from BABYMUSIC.utils.exceptions import AssistantErr
@@ -785,7 +785,7 @@ from BABYMUSIC.utils.inline import (
     stream_markup2,
     panel_markup_4,
 )
-from BABYMUSIC.utils.pastebin import PROBin
+from BABYMUSIC.utils.pastebin import BABYBin
 from BABYMUSIC.utils.stream.queue import put_queue, put_queue_index
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -807,7 +807,7 @@ async def stream(
     if not result:
         return
     if forceplay:
-        await PRO.force_stop_stream(chat_id)
+        await BABY.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['play_19']}\n\n"
         count = 0
@@ -855,7 +855,7 @@ async def stream(
                 except:
 
                     os.system(f"kill -9 {os.getpid()} && bash start")
-                await PRO.join_call(
+                await BABY.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
@@ -894,7 +894,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await PROBin(msg)
+            link = await BABYBin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -948,7 +948,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await PRO.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -1010,7 +1010,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await PRO.join_call(chat_id, original_chat_id, file_path, video=None)
+            await BABY.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -1062,7 +1062,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await PRO.join_call(chat_id, original_chat_id, file_path, video=status)
+            await BABY.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -1118,7 +1118,7 @@ async def stream(
             n, file_path = await YouTube.video(link)
             if n == 0:
                 raise AssistantErr(_["str_3"])
-            await PRO.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -1175,7 +1175,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await PRO.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 link,

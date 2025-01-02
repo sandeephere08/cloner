@@ -2,7 +2,7 @@ from pyrogram import filters, Client
 from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from BABYMUSIC import app
-from BABYMUSIC.core.call import PRO
+from BABYMUSIC.core.call import BABY
 
 from BABYMUSIC.utils.decorators import AdminRightsCheck
 from BABYMUSIC.utils.inline import close_markup
@@ -81,7 +81,7 @@ async def resume_com(cli, message: Message, _, chat_id):
     if await is_music_playing(chat_id):
         return await message.reply_text(_["admin_3"])
     await music_on(chat_id)
-    await PRO.resume_stream(chat_id)
+    await BABY.resume_stream(chat_id)
     buttons_resume = [
         [
             InlineKeyboardButton(text="sᴋɪᴘ", callback_data=f"ADMIN Skip|{chat_id}"),
