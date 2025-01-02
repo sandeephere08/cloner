@@ -154,5 +154,5 @@ HELP_15 = """
 CLONE_HELP = """
 <b><u>Clone ᴄᴏᴍᴍᴀɴᴅs :</b></u>
 
-clone commands here
+Give Bot Token After /clone Command From @Botfather.
 """

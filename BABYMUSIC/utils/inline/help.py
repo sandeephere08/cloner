@@ -95,21 +95,12 @@ def first_page(_):
                 InlineKeyboardButton(
                     text=_["H_B_10"], callback_data="help_callback hb10"
                 ),
-                # InlineKeyboardButton(
-                #     text=_["H_B_8"], callback_data="help_callback hb8"
-                # ),
             ],
             [
                 InlineKeyboardButton(
                     text=_["C_B_1"], callback_data="help_callback chelp"
                 ),
             ],
-            # [
-            #     InlineKeyboardButton(
-            #         text=_["H_B_11"], callback_data="help_callback hb11"
-            #     )
-            # ],
-            #controll_button,
             [
         InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")
     ]
