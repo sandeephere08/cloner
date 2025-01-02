@@ -17,12 +17,13 @@ logging.basicConfig(
     ],
 )
 
-# Add the filter to prevent logging the 'Peer id invalid' messages
-logging.getLogger().addFilter(NoErrorFilter())
+# Add the filter to the pyrogram logger specifically
+pyrogram_logger = logging.getLogger("pyrogram")
+pyrogram_logger.addFilter(NoErrorFilter())
 
-
+# Set log level for libraries to ERROR or higher
+pyrogram_logger.setLevel(logging.ERROR)
 logging.getLogger("httpx").setLevel(logging.ERROR)
-logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("pytgcalls").setLevel(logging.ERROR)
 
 
