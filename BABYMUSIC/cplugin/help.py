@@ -147,6 +147,8 @@ async def helper_cb(client, CallbackQuery, _):
         await CallbackQuery.edit_message_text(helpers.HELP_21, reply_markup=keyboard)
     elif cb == "hb22":
         await CallbackQuery.edit_message_text(helpers.HELP_22, reply_markup=keyboard)
+    elif cb == "chelp":
+        await CallbackQuery.edit_message_text(helpers.CLONE_HELP, reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("dilXaditi") & ~BANNED_USERS)
