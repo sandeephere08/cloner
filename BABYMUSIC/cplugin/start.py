@@ -26,6 +26,8 @@ from BABYMUSIC.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS, OWNER_ID
 from strings import get_string
 
+from BABYMUSIC.utils.database.clonedb import get_clonebot_owner
+
 #--------------------------
 
 NEXI_VID = [
@@ -51,6 +53,7 @@ YUMI_PICS = [
 @LanguageStart
 async def start_pm(client, message: Message, _):
     a = await client.get_me()
+    c_owner = get_clonebot_owner(a.id)
     await add_served_user_clone(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
@@ -107,7 +110,7 @@ async def start_pm(client, message: Message, _):
             )
         ],
         [
-            InlineKeyboardButton(text=_["S_B_5"], user_id=OWNER_ID),
+            InlineKeyboardButton(text=_["S_B_5"], user_id=c_owner),
             InlineKeyboardButton(text=_["S_B_6"], url=config.SUPPORT_CHANNEL),
         ],
         [
