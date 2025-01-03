@@ -117,7 +117,7 @@ async def start_pm(client, message: Message, _):
         # out = private_panel(_)
         await message.reply_photo(
             random.choice(YUMI_PICS),
-            caption=_["start_2"].format(message.from_user.mention, a.mention),
+            caption=_["c_start_2"].format(message.from_user.mention, a.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
 
