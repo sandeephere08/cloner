@@ -31,7 +31,7 @@ from BABYMUSIC.utils.database import (
     is_banned_user,
     is_on_off,
 )
-from BABYMUSIC.utils.logger import play_logs
+from BABYMUSIC.utils.logger import play_logs, clone_play_logs
 from config import BANNED_USERS, lyrical
 from time import time
 from BABYMUSIC.utils.extraction import extract_user
@@ -426,7 +426,7 @@ async def play_commnd(
                 err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
                 print(e)
                 return await mystic.edit_text(e)
-            return await play_logs(message, streamtype="M3u8 or Index Link")
+            return await clone_play_logs(message, streamtype="M3u8 or Index Link")
     else:
         if len(message.command) < 2:
             buttons = botplaylist_markup(_)
@@ -486,7 +486,7 @@ async def play_commnd(
             print(e)
             return await mystic.edit_text(e)
         await mystic.delete()
-        return await play_logs(message, streamtype=streamtype)
+        return await clone_play_logs(message, streamtype=streamtype)
     else:
         if plist_type:
             ran_hash = "".join(
@@ -507,7 +507,7 @@ async def play_commnd(
                 caption=cap,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
-            return await play_logs(message, streamtype=f"Playlist : {plist_type}")
+            return await clone_play_logs(message, streamtype=f"Playlist : {plist_type}")
         else:
             if slider:
                 buttons = slider_markup(
@@ -528,7 +528,7 @@ async def play_commnd(
                     ),
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
-                return await play_logs(message, streamtype=f"Searched on Youtube")
+                return await clone_play_logs(message, streamtype=f"Searched on Youtube")
             else:
                 buttons = track_markup(
                     _,
@@ -543,12 +543,13 @@ async def play_commnd(
                     caption=cap,
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
-                return await play_logs(message, streamtype=f"URL Searched Inline")
+                return await clone_play_logs(message, streamtype=f"URL Searched Inline")
 
 
 @Client.on_callback_query(filters.regex("MusicStream") & ~BANNED_USERS)
 @languageCB
 async def play_music(client: Client, CallbackQuery, _):
+    a = await client.get_me()
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
     vidid, user_id, mode, cplay, fplay = callback_request.split("|")
@@ -579,7 +580,7 @@ async def play_music(client: Client, CallbackQuery, _):
         duration_sec = time_to_seconds(details["duration_min"])
         if duration_sec > config.DURATION_LIMIT:
             return await mystic.edit_text(
-                _["play_6"].format(config.DURATION_LIMIT_MIN, cuser.mention)
+                _["play_6"].format(config.DURATION_LIMIT_MIN, a.mention)
             )
     else:
         buttons = livestream_markup(
