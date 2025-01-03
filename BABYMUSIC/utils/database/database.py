@@ -980,10 +980,3 @@ async def add_served_chat_clone(chat_id: int):
 
 async def delete_served_chat_clone(chat_id: int):
     await chatsdbc.delete_one({"chat_id": chat_id})
-
-async def get_clonebot_owner(bot_id):
-    result = await cloneownerdb.find_one({"bot_id": bot_id})
-    if result:
-        return result.get("user_id")
-    else:
-        return False
