@@ -25,7 +25,7 @@ from BABYMUSIC.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 
 
-@Client.on_message(
+@app.on_message(
     filters.command(
         [
             "play",
