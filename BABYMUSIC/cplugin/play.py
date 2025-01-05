@@ -44,7 +44,7 @@ SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
 
 
-@app.on_message(
+@Client.on_message(
     filters.command(
         [
             "play",
