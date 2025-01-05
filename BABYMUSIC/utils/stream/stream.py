@@ -61,7 +61,7 @@ from BABYMUSIC.utils.inline import (
     stream_markup2,
     panel_markup_4,
 )
-from BABYMUSIC.utils.pastebin import BABYBin
+from BABYMUSIC.utils.pastebin import PROBin
 from BABYMUSIC.utils.stream.queue import put_queue, put_queue_index
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -168,7 +168,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await BABYBin(msg)
+            link = await PROBin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -449,7 +449,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await SHUKLA.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 link,
