@@ -47,7 +47,7 @@ async def init():
     await BABY.decorators()
     await restart_bots()
     LOGGER("BABYMUSIC").info(
-        "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗣𝗿𝗼𝗕𝗼𝘁𝘀☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
+        "CONTACT ︎MADE BY UNTOLDCODER"
     )
     await idle()
     await app.stop()
