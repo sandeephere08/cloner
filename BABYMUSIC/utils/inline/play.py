@@ -518,14 +518,12 @@ def panel_markup_clone(_, vidid, chat_id, played, dur):
         bar = "———————◉———"
     else:
         bar = "——————————◉"
-
     buttons = [
         [
             InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
                 callback_data="GetTimer",
             )
-
         ],
         [
             InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}"),
