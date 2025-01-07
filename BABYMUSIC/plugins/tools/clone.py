@@ -127,7 +127,7 @@ async def restart_bots():
     try:
         logging.info("Restarting all cloned bots........")
         bots = clonebotdb.find()
-        async for bot in bots:
+        for bot in bots:
             bot_token = bot["token"]
             ai = Client(
                 f"{bot_token}",
