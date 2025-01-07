@@ -618,8 +618,8 @@ async def play_music(client: Client, CallbackQuery, _):
     return await mystic.delete()
 
 
-@Client.on_callback_query(filters.regex("BrandedmousAdmin") & ~BANNED_USERS)
-async def Brandedmous_check(client: Client, CallbackQuery):
+@Client.on_callback_query(filters.regex("BABYAmousAdmin") & ~BANNED_USERS)
+async def BABYAmous_check(client: Client, CallbackQuery):
     try:
         await CallbackQuery.answer(
             "» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴɢs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.",
@@ -629,7 +629,7 @@ async def Brandedmous_check(client: Client, CallbackQuery):
         pass
 
 
-@Client.on_callback_query(filters.regex("BrandedPlaylists") & ~BANNED_USERS)
+@Client.on_callback_query(filters.regex("BABYPlaylists") & ~BANNED_USERS)
 @languageCB
 async def play_playlists_command(client: Client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
@@ -773,7 +773,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 import config
 from BABYMUSIC import Carbon, YouTube
-from BABYMUSIC.core.call import BABY
+from BABYMUSIC.core.call import SHUKLA
 from BABYMUSIC.misc import db
 from BABYMUSIC.utils.database import add_active_video_chat, is_active_chat
 from BABYMUSIC.utils.exceptions import AssistantErr
@@ -785,7 +785,7 @@ from BABYMUSIC.utils.inline import (
     stream_markup2,
     panel_markup_4,
 )
-from BABYMUSIC.utils.pastebin import PROBin
+from BABYMUSIC.utils.pastebin import SHUKLABin
 from BABYMUSIC.utils.stream.queue import put_queue, put_queue_index
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -855,7 +855,7 @@ async def stream(
                 except:
 
                     os.system(f"kill -9 {os.getpid()} && bash start")
-                await BABY.join_call(
+                await SHUKLA.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
@@ -1062,7 +1062,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await BABY.join_call(chat_id, original_chat_id, file_path, video=status)
+            await SHUKLA.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -1175,7 +1175,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await BABY.join_call(
+            await SHUKLA.join_call(
                 chat_id,
                 original_chat_id,
                 link,
