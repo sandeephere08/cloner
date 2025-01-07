@@ -10,7 +10,3 @@ buttons = InlineKeyboardMarkup(
         ]
     ]
 )
-
-close_key = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="✯ ᴄʟᴏsᴇ ✯", callback_data="close")]]
-)
