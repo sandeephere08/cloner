@@ -1,5 +1,5 @@
 import asyncio
-from telegram import CallbackQuery
+
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -17,18 +17,11 @@ from BABYMUSIC.utils.database import (
     music_on,
     set_loop,
 )
-from pyrogram.errors import (
-    ChatAdminRequired,
-    InviteRequestSent,
-    UserAlreadyParticipant,
-    UserNotParticipant,
-)
-from BABYMUSIC.utils.database import get_assistant
 from BABYMUSIC.utils.decorators.language import languageCB
 from BABYMUSIC.utils.formatters import seconds_to_min
 from BABYMUSIC.utils.inline import close_markup, stream_markup, stream_markup_timer
 from BABYMUSIC.utils.stream.autoclear import auto_clean
-import config
+from BABYMUSIC.utils.thumbnails import get_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
@@ -43,19 +36,6 @@ from strings import get_string
 
 checker = {}
 upvoters = {}
-
-
-
-@app.on_callback_query(filters.regex("unban_assistant"))
-async def unban_assistant(_, callback: CallbackQuery):
-    chat_id = callback.message.chat.id
-    userbot = await get_assistant(chat_id)
-    
-    try:
-        await app.unban_chat_member(chat_id, userbot.id)
-        await callback.answer("My assistant id unbanned successfully\n\nNow you can play song🔉\n\nThank you", show_alert=True)
-    except Exception as e:
-        await callback.answer(f"Failed to unban my assistant because i don't have ban power\n\nPlease provide me ban power so that i can unban my assistant id", show_alert=True)
 
 
 @app.on_callback_query(filters.regex("ADMIN") & ~BANNED_USERS)
@@ -155,7 +135,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_1"], show_alert=True)
         await CallbackQuery.answer()
         await music_off(chat_id)
-        await BABY.pause_stream(chat_id)
+        await SHUKLA.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_2"].format(mention), reply_markup=close_markup(_)
         )
@@ -164,13 +144,13 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await BABY.resume_stream(chat_id)
+        await SHUKLA.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_4"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
-        await BABY.stop_stream(chat_id)
+        await SHUKLA.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
             _["admin_5"].format(mention), reply_markup=close_markup(_)
@@ -179,7 +159,7 @@ async def del_back_playlist(client, CallbackQuery, _):
     elif command == "Skip" or command == "Replay":
         check = db.get(chat_id)
         if command == "Skip":
-            txt = f"{mention}\n Skiped"
+            txt = f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
             popped = None
             try:
                 popped = check.pop(0)
@@ -187,7 +167,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     await auto_clean(popped)
                 if not check:
                     await CallbackQuery.edit_message_text(
-                        f"{mention}\n Skiped"
+                        f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
                     )
                     await CallbackQuery.message.reply_text(
                         text=_["admin_6"].format(
@@ -196,13 +176,13 @@ async def del_back_playlist(client, CallbackQuery, _):
                         reply_markup=close_markup(_),
                     )
                     try:
-                        return await BABY.stop_stream(chat_id)
+                        return await SHUKLA.stop_stream(chat_id)
                     except:
                         return
             except:
                 try:
                     await CallbackQuery.edit_message_text(
-                        f"{mention}\n Skiped"
+                        f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
                     )
                     await CallbackQuery.message.reply_text(
                         text=_["admin_6"].format(
@@ -210,11 +190,11 @@ async def del_back_playlist(client, CallbackQuery, _):
                         ),
                         reply_markup=close_markup(_),
                     )
-                    return await BABY.stop_stream(chat_id)
+                    return await SHUKLA.stop_stream(chat_id)
                 except:
                     return
         else:
-            txt = f"{mention}\n playing"
+            txt = f"➻ sᴛʀᴇᴀᴍ ʀᴇ-ᴘʟᴀʏᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
         await CallbackQuery.answer()
         queued = check[0]["file"]
         title = (check[0]["title"]).title()
@@ -246,8 +226,10 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
-            run = await CallbackQuery.message.reply_text(
-                text=_["stream_1"].format(
+            img = await get_thumb(videoid)
+            run = await CallbackQuery.message.reply_photo(
+                photo=img,
+                caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
                     title[:23],
                     duration,
@@ -280,8 +262,10 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 return await mystic.edit_text(_["call_6"])
             button = stream_markup(_, chat_id)
-            run = await CallbackQuery.message.reply_text(
-                text=_["stream_1"].format(
+            img = await get_thumb(videoid)
+            run = await CallbackQuery.message.reply_photo(
+                photo=img,
+                caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
                     title[:23],
                     duration,
@@ -318,7 +302,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 except:
                     image = None
             try:
-                await BABY.skip_stream(chat_id, queued, video=status, image=image)
+                await SHUKLA.skip_stream(chat_id, queued, video=status, image=image)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             if videoid == "telegram":
@@ -349,8 +333,10 @@ async def del_back_playlist(client, CallbackQuery, _):
                 db[chat_id][0]["markup"] = "tg"
             else:
                 button = stream_markup(_, chat_id)
-                run = await CallbackQuery.message.reply_text(
-                    text=_["stream_1"].format(
+                img = await get_thumb(videoid)
+                run = await CallbackQuery.message.reply_photo(
+                    photo=img,
+                    caption=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{videoid}",
                         title[:23],
                         duration,
