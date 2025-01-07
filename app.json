@@ -45,12 +45,12 @@
       "HEROKU_API_KEY": {
         "description": "Your Heroku account's API key",
         "value": "HRKU-d3f0603b-acc7-48aa-a7e9-86a0c58d4417",
-        "required": false
+        "required": true
       },
       "HEROKU_APP_NAME": {
         "description": "Your heroku app name",
         "value": "cool",
-        "required": false
+        "required": true
       },
       "LOGGER_ID": {
         "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Channel ki id mat daal dena bsdk.",
