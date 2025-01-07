@@ -10,7 +10,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
     AccessTokenExpired,
     AccessTokenInvalid,
 )
-from SHUKLAMUSIC.utils.database import get_assistant
+from BABYMUSIC.utils.database import get_assistant
 from config import API_ID, API_HASH
 from BABYMUSIC import app
 from BABYMUSIC.misc import SUDOERS
