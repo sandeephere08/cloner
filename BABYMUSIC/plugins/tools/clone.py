@@ -10,19 +10,17 @@ from pyrogram.errors.exceptions.bad_request_400 import (
     AccessTokenExpired,
     AccessTokenInvalid,
 )
-from BABYMUSIC.utils.database import get_assistant
+from SHUKLAMUSIC.utils.database import get_assistant
 from config import API_ID, API_HASH
 from BABYMUSIC import app
-from config import OWNER_ID
 from BABYMUSIC.misc import SUDOERS
 from BABYMUSIC.utils.database import get_assistant, clonebotdb
 from config import LOGGER_ID
-import requests
 
 CLONES = set()
 
 
-@app.on_message(filters.command("clone"))
+@app.on_message(filters.command("clone") & SUDOERS)
 async def clone_txt(client, message):
     userbot = await get_assistant(message.chat.id)
     if len(message.command) > 1:
@@ -34,7 +32,7 @@ async def clone_txt(client, message):
                 API_ID,
                 API_HASH,
                 bot_token=bot_token,
-                plugins=dict(root="BABYMUSIC.cplugin"), 
+                plugins=dict(root="SHUKLAMUSIC.cplugin"),
             )
             await ai.start()
             bot = await ai.get_me()
@@ -71,39 +69,13 @@ async def clone_txt(client, message):
             }
             clonebotdb.insert_one(details)
             CLONES.add(bot.id)
-
-            #set bot info ----------------------------
-            def set_bot_commands():
-                url = f"https://api.telegram.org/bot{bot_token}/setMyCommands"
-                commands = [
-                    {"command": "/start", "description": "Start the bot"},
-                    {"command": "/help", "description": "Get help about the bot"},
-                    {"command": "/play", "description": "starts streaming the requested track on videochat."}
-                ]
-                params = {"commands": commands}
-                response = requests.post(url, json=params)
-                print(response.json())
-
-            set_bot_commands()
-
-            # Set bot's about text
-            def set_bot_about():
-                url = f"https://api.telegram.org/bot{bot_token}/setMyAbout"
-                params = {"about": "Part Of - @ProBotts"}
-                response = requests.post(url, data=params)
-                print(response.json())
-
-            set_bot_about()
-
-            #set bot info ----------------------------
-
             await mi.edit_text(
                 f"Bot @{bot.username} has been successfully cloned and started ✅.\n**Remove cloned by :- /delclone**"
             )
         except BaseException as e:
             logging.exception("Error while cloning bot.")
             await mi.edit_text(
-                f"⚠️ <b>ᴇʀʀᴏʀ:</b>\n\n<code>{e}</code>\n\n**ᴋɪɴᴅʟʏ ғᴏᴡᴀʀᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ @ProBotGc ᴛᴏ ɢᴇᴛ ᴀssɪsᴛᴀɴᴄᴇ**"
+                f"⚠️ <b>ᴇʀʀᴏʀ:</b>\n\n<code>{e}</code>\n\n**ᴋɪɴᴅʟʏ ғᴏᴡᴀʀᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ @vk_zone ᴛᴏ ɢᴇᴛ ᴀssɪsᴛᴀɴᴄᴇ**"
             )
     else:
         await message.reply_text(
@@ -141,8 +113,6 @@ async def delete_cloned_bot(client, message):
             await message.reply_text(
                 "**🤖 your cloned bot has been disconnected from my server ☠️\nClone by :- /clone**"
             )
-            await restart_bots()
-            # Call restart function here after successful deletion
         else:
             await message.reply_text(
                 "**⚠️ The provided bot token is not in the cloned list.**"
@@ -156,8 +126,8 @@ async def restart_bots():
     global CLONES
     try:
         logging.info("Restarting all cloned bots........")
-        bots = list(clonebotdb.find())
-        for bot in bots:
+        bots = clonebotdb.find()
+        async for bot in bots:
             bot_token = bot["token"]
             ai = Client(
                 f"{bot_token}",
@@ -167,62 +137,35 @@ async def restart_bots():
                 plugins=dict(root="BABYMUSIC.cplugin"),
             )
             await ai.start()
-
-            # Set bot's about text
-            def set_bot_about():
-                url = f"https://api.telegram.org/bot{bot_token}/setMyAbout"
-                params = {"about": "Part Of - @ProBotts"}
-                response = requests.post(url, data=params)
-                print(response.json())
-
-            set_bot_about()
-
             bot = await ai.get_me()
             if bot.id not in CLONES:
                 try:
                     CLONES.add(bot.id)
                 except Exception:
                     pass
-            await asyncio.sleep(5)
     except Exception as e:
         logging.exception("Error while restarting bots.")
 
 
-@app.on_message(filters.command("cloned") & filters.user(OWNER_ID))
+@app.on_message(filters.command("cloned") & SUDOERS)
 async def list_cloned_bots(client, message):
     try:
-        cloned_bots = list(clonebotdb.find())
-        if not cloned_bots:
+        cloned_bots = clonebotdb.find()
+        cloned_bots_list = await cloned_bots.to_list(length=None)
+
+        if not cloned_bots_list:
             await message.reply_text("No bots have been cloned yet.")
             return
 
-        total_clones = len(cloned_bots)
-        text = f"**Total Cloned Bots: {total_clones}**\n\n"
+        total_clones = len(cloned_bots_list)
+        text = f"Total Cloned Bots: {total_clones}\n\n"
 
-        for bot in cloned_bots:
-            text += f"**Bot ID:** {bot['bot_id']}\n"
-            text += f"**Bot Name:** {bot['name']}\n"
-            text += f"**Bot Username:** @{bot['username']}\n"
-            text += f"**Bot Token:** `{bot['token']}`\n\n"
+        for bot in cloned_bots_list:
+            text += f"Bot ID: {bot['bot_id']}\n"
+            text += f"Bot Name: {bot['name']}\n"
+            text += f"Bot Username: @{bot['username']}\n\n"
 
         await message.reply_text(text)
     except Exception as e:
         logging.exception(e)
         await message.reply_text("An error occurred while listing cloned bots.")
-
-
-@app.on_message(filters.command("delallclone") & filters.user(OWNER_ID))
-async def delete_all_cloned_bots(client, message):
-    try:
-        await message.reply_text("Deleting all cloned bots...")
-
-        # Delete all cloned bots from the database
-        clonebotdb.delete_many({})
-
-        # Clear the CLONES set
-        CLONES.clear()
-
-        await message.reply_text("All cloned bots have been deleted successfully.")
-    except Exception as e:
-        await message.reply_text("An error occurred while deleting all cloned bots.")
-        logging.exception(e)
