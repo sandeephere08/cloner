@@ -247,7 +247,7 @@ async def gen_thumb(videoid: str):
         return None
 
 
-async def gen_thumb(videoid: str):
+async def get_thumb(videoid: str):
     try:
         if os.path.isfile(f"cache/{videoid}_v4.png"):
             return f"cache/{videoid}_v4.png"
