@@ -182,7 +182,11 @@ async def delete_all_clones(client, message):
     )
 
     try:
-        reply = await client.listen(message.chat.id, timeout=30)
+        reply = await client.listen(
+            confirmation_msg.chat.id,
+            filters=filters.reply & filters.text & filters.user(message.from_user.id),
+            timeout=30
+        )
         if reply.text.strip().upper() != "YES":
             await message.reply_text("❌ Action canceled. No bots were deleted.")
             return
@@ -191,7 +195,6 @@ async def delete_all_clones(client, message):
         return
 
     try:
-        # Delete all cloned bots
         deleted_count = clonebotdb.delete_many({}).deleted_count
         CLONES.clear()
 
