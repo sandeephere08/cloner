@@ -56,8 +56,7 @@ from BABYMUSIC.utils.exceptions import AssistantErr
 from BABYMUSIC.utils.inline import (
     aq_markup,
     close_markup,
-    stream_markup,
-    stream_markup2,
+    stream_markup.
     panel_markup_4,
 )
 from BABYMUSIC.utils.pastebin import PROBin
