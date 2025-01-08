@@ -9,10 +9,10 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
+API_ID = int(getenv("API_ID", "28010019"))
+API_HASH = getenv("API_HASH", "d883bdb2619d7b940dcd81cdb8e0bf92")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN")
+BOT_TOKEN = getenv("BOT_TOKEN", "7824572624:AAE8ndZIUS2CTWsrl2lKlwN3D-Fuk1wiJcw")
 # -------------------------------------------------------
 OWNER_USERNAME = getenv("OWNER_USERNAME","untold_coder")
 # --------------------------------------------------------
@@ -26,7 +26,7 @@ ASSUSERNAME = getenv("ASSUSERNAME" , "lehar")
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://coder:coder@coder.htbxi.mongodb.net/?retryWrites=true&w=majority")
 API_KEY = getenv("API_KEY")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -36,7 +36,7 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1001550054357))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002136457746))
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 OWNER_ID = int(getenv("OWNER_ID", 6391774843))
@@ -117,7 +117,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "")
+STRING1 = getenv("STRING_SESSION", "BQGrZiMAWaJYVyqh_yBkAnEHtHkclEL9lRXo0RKXuzP6NP0PUJq9F3cyJx7zXnGtfQ5ngwRbXP1Ov81TnpYsNP-RtjHMKMytLNyzGI5V5K9eQpCyiHqdff9aqNKK_OgaO99mC4z5dM8bubUcYQ4wRueBmZ4OaJpECPK6itHrMQlWmxXOdU4iaWjxwVArFBkPIaP1M2JpXq_S3LDS__Fyl9sZn0zgrqe_IEfTO6Z6GkbzappRuelp-sTgIJ2wd6UWBeAqlBua4Gh5hlE_8ngIYhUDacYvbqu88Mawoi1zpj4nXFkl5gGjZ1BhAXDsM6odSqjTD8BWe_VOdqXYxo7vYbnZ7aSG8QAAAAHlyy_cAA")
 STRING2 = getenv("STRING_SESSION2", None)
 BANNED_USERS = filters.user()
 adminlist = {}
