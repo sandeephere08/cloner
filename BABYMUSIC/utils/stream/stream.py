@@ -165,7 +165,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await SHUKLA.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -391,7 +391,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await SHUKLA.join_call(
+            await BABY.join_call(
                 chat_id,
                 original_chat_id,
                 link,
