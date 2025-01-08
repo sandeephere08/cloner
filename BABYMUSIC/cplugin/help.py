@@ -95,7 +95,7 @@ async def helper_cb(client, CallbackQuery, _):
     if cb == "hb9":
         if CallbackQuery.from_user.id not in SUDOERS:
             return await CallbackQuery.answer(
-                "😎 Hɪ ɪᴀᴍ ᴜɴᴛᴏʟᴅ ᴄᴏᴅᴇʀ  😆😆", show_alert=True
+                "😎𝗣𝗔𝗛𝗟𝗘 𓆩𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛𓆪 𝗞𝗢 𝗣𝗔𝗣𝗔 𝗕𝗢𝗟 𝗝𝗔𝗞𝗘 😆😆", show_alert=True
             )
         else:
             await CallbackQuery.edit_message_text(helpers.HELP_9, reply_markup=keyboard)
@@ -147,8 +147,6 @@ async def helper_cb(client, CallbackQuery, _):
         await CallbackQuery.edit_message_text(helpers.HELP_21, reply_markup=keyboard)
     elif cb == "hb22":
         await CallbackQuery.edit_message_text(helpers.HELP_22, reply_markup=keyboard)
-    elif cb == "chelp":
-        await CallbackQuery.edit_message_text(helpers.CLONE_HELP, reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("dilXaditi") & ~BANNED_USERS)
