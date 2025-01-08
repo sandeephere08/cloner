@@ -773,7 +773,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 import config
 from BABYMUSIC import Carbon, YouTube
-from BABYMUSIC.core.call import SHUKLA
+from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import db
 from BABYMUSIC.utils.database import add_active_video_chat, is_active_chat
 from BABYMUSIC.utils.exceptions import AssistantErr
@@ -855,7 +855,7 @@ async def stream(
                 except:
 
                     os.system(f"kill -9 {os.getpid()} && bash start")
-                await SHUKLA.join_call(
+                await BABY.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
