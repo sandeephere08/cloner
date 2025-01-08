@@ -21,7 +21,7 @@ from BABYMUSIC.utils.decorators.language import languageCB
 from BABYMUSIC.utils.formatters import seconds_to_min
 from BABYMUSIC.utils.inline import close_markup, stream_markup, stream_markup_timer
 from BABYMUSIC.utils.stream.autoclear import auto_clean
-from BABYMUSIC.utils.thumbnails import gen_thumb
+from BABYMUSIC.utils.thumbnails import get_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
@@ -226,7 +226,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
-            img = await gen_thumb(videoid)
+            img = await get_thumb(videoid)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
