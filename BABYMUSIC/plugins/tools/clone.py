@@ -169,3 +169,38 @@ async def list_cloned_bots(client, message):
     except Exception as e:
         logging.exception(e)
         await message.reply_text("An error occurred while listing cloned bots.")
+
+@app.on_message(filters.command("delallclone") & SUDOERS)
+async def delete_all_clones(client, message):
+    if message.from_user.id not in SUDOERS:
+        await message.reply_text("❌ You are not authorized to use this command.")
+        return
+
+    confirmation_msg = await message.reply_text(
+        "⚠️ **Are you sure you want to delete all cloned bots? This action cannot be undone.**\n\n"
+        "Reply with `YES` within 30 seconds to confirm."
+    )
+
+    try:
+        reply = await client.listen(message.chat.id, timeout=30)
+        if reply.text.strip().upper() != "YES":
+            await message.reply_text("❌ Action canceled. No bots were deleted.")
+            return
+    except asyncio.TimeoutError:
+        await message.reply_text("❌ Timeout. No bots were deleted.")
+        return
+
+    try:
+        # Delete all cloned bots
+        deleted_count = clonebotdb.delete_many({}).deleted_count
+        CLONES.clear()
+
+        await message.reply_text(
+            f"✅ Successfully deleted all {deleted_count} cloned bots from the database."
+        )
+        await client.send_message(
+            LOGGER_ID, f"**#Clones_Deleted**\n\nAll {deleted_count} cloned bots have been deleted by {message.from_user.mention}."
+        )
+    except Exception as e:
+        logging.exception(e)
+        await message.reply_text("❌ An error occurred while deleting cloned bots.")
