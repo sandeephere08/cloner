@@ -785,7 +785,7 @@ from BABYMUSIC.utils.inline import (
     stream_markup2,
     panel_markup_4,
 )
-from BABYMUSIC.utils.pastebin import SHUKLABin
+from BABYMUSIC.utils.pastebin import PROBin
 from BABYMUSIC.utils.stream.queue import put_queue, put_queue_index
 from youtubesearchpython.__future__ import VideosSearch
 
