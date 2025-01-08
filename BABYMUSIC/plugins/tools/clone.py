@@ -20,7 +20,7 @@ from config import LOGGER_ID
 CLONES = set()
 
 
-@app.on_message(filters.command("clone") & SUDOERS)
+@app.on_message(filters.command("clone"))
 async def clone_txt(client, message):
     userbot = await get_assistant(message.chat.id)
     if len(message.command) > 1:
@@ -32,7 +32,7 @@ async def clone_txt(client, message):
                 API_ID,
                 API_HASH,
                 bot_token=bot_token,
-                plugins=dict(root="SHUKLAMUSIC.cplugin"),
+                plugins=dict(root="BABYMUSIC.cplugin"),
             )
             await ai.start()
             bot = await ai.get_me()
