@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cloner
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 -m BABYMUSIC
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0 

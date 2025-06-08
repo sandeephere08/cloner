@@ -167,8 +167,8 @@ def help_pannel(_, START: Union[bool, int] = None):
                 ),
             ],
             [
-                            InlineKeyboardButton(text="🔸UNTOLD CODER🔸", url=f"https://t.me/UNTOLD_CODER4"),
-                            InlineKeyboardButton(text="▪️ABOUT UNTOLD▪️", url=f"https://t.me/UNTOLD_CODER"),
+                            InlineKeyboardButton(text="🔸zefron🔸", url=f"https://t.me/crush_hu_tera4"),
+                            InlineKeyboardButton(text="▪️ABOUT zefron▪️", url=f"https://t.me/crush_hu_tera"),
             ],
             [
                 InlineKeyboardButton(
