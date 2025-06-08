@@ -37,6 +37,13 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 
 # ----------------------------------------------------------------
 LOGGER_ID = int(getenv("LOGGER_ID", -1002136457746))
+# Add error handling for logger ID
+try:
+    if LOGGER_ID:
+        LOGGER_ID = int(LOGGER_ID)
+except ValueError:
+    LOGGER_ID = None
+    print("Warning: Invalid LOGGER_ID format. Logging to channel will be disabled.")
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 OWNER_ID = int(getenv("OWNER_ID", 6391774843))
